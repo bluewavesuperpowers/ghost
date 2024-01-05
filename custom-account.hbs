@@ -1,0 +1,92 @@
+{{!< default}}
+
+{{^if @member}}
+    <script>window.location = '{{@site.url}}/signin/';</script>
+{{/if}}
+<main class="gh-account-page gh-container">
+    {{> "breadcrumbs"}}
+    <div class="gh-account-page-wrapper">
+        <div class="gh-account-page-inner">
+            <div class="gh-account-page-header">
+                {{#if @member.paid}}
+                    {{#foreach @member.subscriptions}}
+                        {{#if avatar_image}}
+                            <picture>
+                                <source srcset="{{img_url avatar_image size="200" format="webp"}} 200w, {{img_url avatar_image size="112" format="webp"}} 112w" sizes="(max-width:500px) 80px, 112px"  type="image/webp">
+                                <img class="gh-account-page__image" srcset="{{img_url avatar_image size="200"}} 200w, {{img_url avatar_image size="112"}} 112w" sizes="(max-width:500px) 80px, 112px" src="{{img_url avatar_image size="200"}}"
+                                alt="{{primary_author.name}} {{t "profile image"}}">
+                            </picture>
+                        {{else}}
+                            <div class="gh-account-page__image gh-account-page__image--default">
+                                {{> "icons/author-default-card"}}
+                            </div>
+                        {{/if}}
+                    {{/foreach}}
+                {{else}}
+                    <div class="gh-account-page__image gh-account-page__image--default">
+                        {{> "icons/author-default-card"}}
+                    </div>
+                {{/if}}
+                <span class="gh-account-page__name">{{@member.name}}</span>
+                {{#if @member.paid}}
+                    {{#foreach @member.subscriptions}}
+                        <p class="gh-account-page__desc">
+                            {{t "Hey,"}} {{@member.firstname}}! {{t "You have an"}} {{status}} {{plan.nickname}} {{t "account"}}. {{t "Get in touch
+                            if you have any problems or need some help getting things updated, and thanks for subscribing."}}
+                        </p>
+                    {{/foreach}}
+                {{else}}
+                    <p class="gh-account-page__desc">
+                        {{t "Hey,"}} {{@member.firstname}}! {{t "You have an active free account. Get in touch if you have any problems or need some help getting things updated, and thanks for subscribing."}}
+                    </p>
+                {{/if}}
+                <button aria-labelledby="{{t "Account settings"}}" class="gh-account-page-settings-btn" data-portal="account">
+                    {{> "icons/settings-icon"}}
+                    <span>{{t "Account Settings"}}</span>
+                </button>
+            </div>
+            <div class="gh-account-page-billing-info">
+                <div class="gh-account-page-billing-row">
+                    <div class="gh-account-page-billing-item">
+                        <span class="gh-account-page-billing-item__name">{{t "Email Address"}}</span>
+                        <span class="gh-account-page-billing-item__value">{{@member.email}}</span>
+                    </div>
+                    <div class="gh-account-page-billing-item">
+                        <span class="gh-account-page-billing-item__name">{{t "Your Plan"}}</span>
+                        <span class="gh-account-page-billing-item__value">{{#if @member.paid}}{{#foreach @member.subscriptions}}{{plan.nickname}}{{/foreach}}{{else}}{{t "Free"}}{{/if}}</span>
+                    </div>
+                </div>
+                {{#if @member.paid}}
+                    {{#foreach @member.subscriptions}}
+                    <div class="gh-account-page-billing-row">
+                        <div class="gh-account-page-billing-item">
+                            <span class="gh-account-page-billing-item__name">{{t "Card"}}</span>
+                            <div class="gh-account-page-billing-item__value">
+                                {{> "icons/card-dots"}}
+                                {{default_payment_card_last4}}
+                            </div>
+                        </div>
+                        <div class="gh-account-page-billing-item">
+                            <span class="gh-account-page-billing-item__name">{{t "Next Bill Date"}}</span>
+                            <span class="gh-account-page-billing-item__value">{{date current_period_end format="DD MMMM YYYY"}}</span>
+                        </div>
+                    </div>
+                    {{/foreach}}
+                {{/if}}
+            </div>
+            {{#if @member.paid}}
+                <div class="gh-account-page-buttons">
+                    <button aria-labelledby="{{t "Edit Billing Info"}}" class="gh-main-button gh-account-page-edit-btn" data-members-edit-billing>
+                         <span>{{t "Edit Billing Info"}}</span>
+                        {{> "icons/loader"}}
+                    </button>
+                    {{#foreach @member.subscriptions}} {{cancel_link class="gh-secondary-button gh-account-page-cancel-btn" cancelLabel="Cancel Subscription" continueLabel="Continue Subscription"}}  {{/foreach}}
+                </div>
+            {{/if}}
+        </div>
+         <button aria-labelledby="{{t "Log Out"}}" class="gh-logout-btn" data-members-signout>
+            {{> "icons/logout-icon"}}
+            <span>{{t "Log Out"}}</span>
+        </button>
+    </div>
+</main>

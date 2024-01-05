@@ -1,0 +1,54 @@
+{{#is "post"}}
+    <ul class="gh-breadcrumbs">
+        <li class="gh-breadcrumb-item"><a href="{{@site.url}}" aria-label="{{t "Home page link"}}">{{t "Home"}}</a></li>
+        {{#if primary_tag.url}}
+            {{#get "pages" slug="categories"}}
+                {{#if pages}}
+                    <li class="gh-breadcrumb-item"><a href="{{@site.url}}/categories" aria-label="{{t "Categories page link"}}">{{t "Categories"}}</a></li>
+                {{/if}}
+            {{/get}}
+        {{/if}}
+        {{#if primary_tag.url}}
+            <li class="gh-breadcrumb-item"><a href="{{primary_tag.url}}" aria-label="{{primary_tag.name}} {{t "page link"}}">{{primary_tag.name}}</a></li>
+        {{/if}}
+        <li class="gh-breadcrumb-item"><a href="{{url}}" aria-label="{{title}} {{t "post page link"}}">{{title}}</a></li>
+    </ul>
+{{/is}}
+
+{{#is "tag"}}
+    <ul class="gh-breadcrumbs">
+        <li class="gh-breadcrumb-item"><a href="{{@site.url}}" aria-label="{{t "Home page link"}}">{{t "Home"}}</a></li>
+        {{#get "pages" slug="categories"}}
+            {{#if pages}}
+                <li class="gh-breadcrumb-item"><a href="{{@site.url}}/categories" aria-label="{{t "Categories page link"}}">{{t "Categories"}}</a></li>
+            {{/if}}
+        {{/get}}
+        <li class="gh-breadcrumb-item"><a href="{{primary_tag.url}}" aria-label="{{primary_tag.name}} {{t "page link"}}">{{name}}</a></li>
+    </ul>
+{{/is}}
+
+{{#is "author"}}
+    <ul class="gh-breadcrumbs">
+        <li class="gh-breadcrumb-item"><a href="{{@site.url}}" aria-label="{{t "Home page link"}}">{{t "Home"}}</a></li>
+        {{#get "pages" slug="authors"}}
+            {{#if pages}}
+                <li class="gh-breadcrumb-item"><a href="{{@site.url}}/authors" aria-label="{{t "Authors page link"}}">{{t "Authors"}}</a></li>
+            {{/if}}
+        {{/get}}
+        <li class="gh-breadcrumb-item"><a href="{{primary_author.url}}" aria-label="{{name}} {{t "page link"}}">{{name}}</a></li>
+    </ul>
+{{/is}}
+
+{{#is "page"}}
+    <ul class="gh-breadcrumbs">
+        <li class="gh-breadcrumb-item"><a href="{{@site.url}}" aria-label="{{t "Home page link"}}">{{t "Home"}}</a></li>
+        {{#if page.title}}
+        <li class="gh-breadcrumb-item"><a href="{{url}}" aria-label="{{page.title}} {{t "page link"}}">{{page.title}}</a></li>
+        {{/if}}
+        {{#unless page.title}}
+            {{#if title}}
+            <li class="gh-breadcrumb-item"><a href="{{url}}" aria-label="{{title}} {{t "page link"}}">{{title}}</a></li>
+            {{/if}}
+        {{/unless}}
+    </ul>
+{{/is}} 

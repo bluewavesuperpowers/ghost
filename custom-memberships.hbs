@@ -1,0 +1,59 @@
+{{!< default}}
+
+<main class="gh-membership-page gh-container">
+    {{> "breadcrumbs"}}
+    <h2 class="gh-membership-page-title">{{title}}</h2>
+    {{#page}}
+        <p class="gh-membership-page-desc">{{excerpt}}</p>
+    {{/page}}
+    <button aria-labelledby="{{t "Monthly or yearly toggle button"}}" class="gh-membership-toggle-btn">
+        <span class="gh-membership-toggle-value">{{t "Monthly"}}</span>
+        <span class="gh-membership-toggle-value">{{t "Yearly"}}</span>
+    </button>
+    <div class="gh-tiers-container">
+        {{#get "tiers" include="monthly_price,yearly_price,benefits" limit="all" as |tiers|}}
+            {{#foreach tiers}}
+                <div class="gh-tier-card">
+                    <h3 class="gh-tier-card__name">{{name}}</h3>
+                    <p class="gh-tier-card__desc">{{description}}</p>
+                    <div class="gh-tier-card__price">
+                        <span class="gh-tier-card__price-value monthly">{{#match type "free"}}0{{else}}{{price monthly_price currency=currency numberFormat="long" currencyFormat="symbol"}}{{/match}}</span>
+                        <span class="gh-tier-card__price-value yearly">{{#match type "free"}}0{{else}}{{price yearly_price currency=currency numberFormat="long" currencyFormat="symbol"}}{{/match}}</span>
+                        <span class="gh-tier-card__price-per monthly">{{t "Month"}}</span>
+                        <span class="gh-tier-card__price-per yearly">{{t "Year"}}</span>
+                    </div>
+                    {{#if benefits}}
+                        <ul class="gh-tier-card-benefits-list">
+                            {{#foreach benefits as |benefit|}}
+                            <li class="gh-tier-card-benefit">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.6663 4.66675L6.66215 11.149C6.43435 11.3949 6.065 11.3949 5.8372 11.149L3.33301 8.4454"
+                                        stroke="#343435" stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                                {{benefit}}
+                            </li>
+                            {{/foreach}}
+                        </ul>
+                    {{/if}}
+                    <div class="gh-tier-card-btn-wrapper">
+                        {{#match type "free"}}
+                            <a class="gh-tier-card-signup monthly gh-main-button" href="javascript:" data-portal="signup" aria-label="{{t "Sign up for free"}}">{{t "Sign Up For Free"}}</a>
+                            <a class="gh-tier-card-signup yearly gh-main-button" href="javascript:" data-portal="signup" aria-label="{{t "Sign up for free"}}">{{t "Sign Up For Free"}}</a>
+                        {{else}}
+                            <a class="gh-tier-card-signup monthly gh-main-button" href="javascript:" data-portal="signup/{{id}}/monthly" aria-label="{{t "Sign up monthly"}}">{{t "Sign Up Now"}}</a>
+                            <a class="gh-tier-card-signup yearly gh-main-button" href="javascript:" data-portal="signup/{{id}}/yearly" aria-label="{{t "Sign up yearly"}}">{{t "Sign Up Now"}}</a>
+                        {{/match}}
+                    </div>
+                </div>
+            {{/foreach}}
+        {{/get}}
+    </div>
+    {{#unless @member}}
+        <p class="gh-membership-page__sign-in">{{t "Already have an account?"}} <a class="gh-membership-page__sign-in-link" href="{{@site.url}}/signin" aria-label="{{t "Sign In"}}">{{t "Sign In"}}</a></p>
+    {{/unless}}
+    {{#page}}
+        <div class="gh-membership-page-content">
+            {{content}}
+        </div>
+    {{/page}}
+</main>

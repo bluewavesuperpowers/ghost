@@ -1,0 +1,19 @@
+<a href="{{@site.url}}" class="gh-header__author-wrapper" aria-label="Author page link">
+    {{#get "authors" limit="1"}}
+        {{#if authors}}
+            {{#foreach authors}}
+                {{#if profile_image}}
+                    <picture>
+                        <source srcset="{{img_url profile_image size="112" format="webp"}} 112w, {{img_url profile_image size="200" format="webp"}} 200w" sizes="40px"  type="image/webp">
+                        <img class="gh-header__author-image" srcset="{{img_url profile_image size="112"}} 112w, {{img_url profile_image size="200"}} 200w" sizes="40px" src="{{img_url profile_image size="200"}}" alt="{{name}} {{t "profile image"}}" />
+                    </picture>
+                {{else}}
+                    <img class="gh-header__author-image" src="{{asset "imagesAndIcons/AuthorAvatarDefault.jpg"}}" alt="{{name}} {{t "profile image"}}">
+                {{/if}}
+                <h1 class="gh-site-title__author">{{name}}</h1>
+            {{/foreach}}
+        {{else}}
+            <h1 class="gh-site-title">{{@site.title}}</h1>
+        {{/if}}
+    {{/get}}
+</a>

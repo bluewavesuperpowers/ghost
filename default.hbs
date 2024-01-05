@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" class="{{#match @custom.background_color "#ffffff"}}gh-html-white-background{{/match}}" data-color-scheme="light">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{meta_title}}</title>
+
+    <link rel="stylesheet" href="{{asset 'built/index.css'}}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    {{> "font-pairings"}}
+    <script>
+        const rootElem = document.querySelector("html[data-color-scheme]");
+
+        const detectSystemTheme = () => {
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                rootElem.setAttribute("data-color-scheme", "dark");
+            } else {
+                rootElem.setAttribute("data-color-scheme", "light");
+            }
+        };
+
+        const initTheme = () => {
+            const localStoragePref = localStorage.getItem("color-scheme");
+
+            if (localStoragePref) {
+                rootElem.setAttribute("data-color-scheme", localStoragePref);
+            } else {
+                detectSystemTheme();
+            }
+        };
+
+        initTheme();
+
+        window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", () => {
+                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    rootElem.setAttribute("data-color-scheme", "dark");
+                } else {
+                    rootElem.setAttribute("data-color-scheme", "light");
+                }
+            });
+    </script>
+    {{> "border-radius"}}
+    {{> "bg-color"}}
+    <style>
+        :root {
+            --background-color-button: {{@custom.button_color}};
+        }
+    </style>
+    {{#match @custom.button_color "#000000"}}
+        <style>
+            :root[data-color-scheme="dark"] {
+                --background-color-button: #343435;
+            }
+        </style>
+    {{/match}}
+    {{ghost_head}}
+    {{!-- Outputs important meta data and settings, should always be in <head> --}}
+
+</head>
+
+<body class="{{body_class}} is-head-{{#match @custom.navigation_layout "Logo on the left"}}left-logo{{else match
+    @custom.navigation_layout "Author on the left" }}left-logo{{else match
+    @custom.navigation_layout "Logo in the middle" }}middle-logo{{else match
+    @custom.navigation_layout "Author in the middle" }}middle-logo{{else match
+    @custom.navigation_layout "Logo with social icons"}}include-social-icons{{else match
+    @custom.navigation_layout "Author with social icons"}}include-social-icons{{else match
+    @custom.navigation_layout "Mobile menu with logo"}}mobile-menu{{else match
+    @custom.navigation_layout "Mobile menu with author"}}mobile-menu{{else match
+    @custom.navigation_layout "Mobile menu with logo and icons"}}mobile-menu-icons{{else match
+    @custom.navigation_layout "Mobile menu with author and icons"}}mobile-menu-icons{{/match}}">
+    <div class="gh-viewport">
+        <header id="gh-head" class="gh-head">
+            <div class="gh-head-inner gh-container">
+                <div class="gh-head-brand-socials-wrapper{{#match @custom.navigation_layout "Mobile menu with logo"}}
+                    includeMobileMenu{{else match @custom.navigation_layout "Mobile menu with author" }} includeMobileMenu{{else match
+                    @custom.navigation_layout "Mobile menu with author and icons" }} includeMobileMenu{{else match
+                    @custom.navigation_layout "Mobile menu with logo and icons" }} includeMobileMenu{{/match}}">
+                    <button class="gh-burger-btn" aria-label="{{t "Mobile menu button"}}">
+                        {{> "icons/burger-icon"}}
+                    </button>
+                    <div class="gh-head-brand">
+                        {{#match @custom.navigation_layout "Author on the left"}}
+                            {{> "header-author"}}
+                        {{else match @custom.navigation_layout "Author in the middle"}}
+                            {{> "header-author"}}
+                        {{else match @custom.navigation_layout "Author with social icons"}}
+                            {{> "header-author"}}
+                        {{else match @custom.navigation_layout "Mobile menu with author and icons"}}
+                            {{> "header-author"}}
+                        {{else match @custom.navigation_layout "Mobile menu with author"}}
+                            {{> "header-author"}}
+                        {{else}}
+                            <a class="gh-site-logo {{#if @custom.dark_mode_logo}}gh-site-logo-has-DM-logo{{/if}}" href="{{@site.url}}" aria-label="{{@site.title}} {{t "logo and home page link"}}">
+                                {{#if @site.logo}}
+                                    {{#if @custom.dark_mode_logo}}
+                                    <img src="{{img_url @custom.dark_mode_logo}}" alt="{{@site.title}} {{t "icon"}}" class="gh-site-logo-img-dark-mode">
+                                    {{/if}}
+                                    <img src="{{img_url @site.logo}}" alt="{{@site.title}} {{t "icon"}}" class="gh-site-logo-img">
+                                    {{else}}
+                                    <h1 class="gh-site-title">{{@site.title}}</h1>
+                                {{/if}}
+                            </a>
+                        {{/match}}
+                    </div>
+                    {{> "socials"}}
+                </div>
+                <div class="gh-head-menu">
+                    {{navigation}}
+                </div>
+                <div class="gh-head-actions">
+                    <div class="gh-head-actions-list">
+                        <button class="gh-dark-mode-toggle-btn" aria-label="{{t "Dark mode toggle button"}}">
+                                {{>icons/sun}}
+                                {{>icons/moon}}
+                        </button>
+                        <button class="gh-search" title="{{t "Search button"}}" aria-label="{{t "Search button"}}" data-ghost-search>{{> "icons/search"}}<span>{{t "Search"}}</span></button>
+                        {{#if @site.members_enabled}}
+                            {{#if @member}}
+                            <a class="gh-main-button gh-member-button" href="{{@site.url}}/account" aria-label="{{t "Account page link"}}">{{t "My Account"}}</a>
+                            {{else}}
+                            <a class="gh-main-button gh-member-button" href="{{@site.url}}/signup" aria-label="{{t "Sign up button"}}">{{t "Sign Up"}}</a>
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            {{> "mobile-menu"}}
+            <div class="gh-overlay"></div>
+        </header>
+        
+        {{{body}}}
+        {{! All content gets inserted here, index.hbs, post.hbs, etc }}
+        
+        <footer class="gh-foot{{^match @custom.background_color "#ffffff"}} gh-foot--colored{{/match}}">
+            <div class="gh-foot-subscription-wrapper">
+                <div class="gh-foot-subscription-opacity-wrapper"></div>
+                <div class="gh-foot-subscription-bg-color"></div>
+                <div class="gh-container">
+                    <div class="gh-foot-subscription{{#get "posts" limit="all"}}{{^match posts.length ">=" "20"}} gh-foot-subscription--image{{/match}}{{/get}}">
+                        <div class="gh-foot-subscription-content">
+                            <h3 class="gh-foot-subscription-cta-text">
+                                {{@custom.cta_text_for_subscription_section}}
+                            </h3>
+                            <p class="gh-foot-subscription-cta-subtext">
+                                {{@custom.cta_subtext_for_subscription_section}}
+                            </p>
+                            {{#if @site.members_enabled}}
+                                {{#get "pages" slug="membership"}}
+                                    {{#if pages}}
+                                        {{#unless @member}}
+                                            <a class="gh-main-button gh-subscribe-button" href="{{@site.url}}/subscribe" aria-label="{{t "Subscribe button"}}">
+                                                {{t "Subscribe"}}
+                                            </a>
+                                        {{else}}
+                                            <a class="gh-main-button gh-subscribe-button" href="{{@site.url}}/membership" aria-label="{{t "Membership button"}}">
+                                                {{t "Membership"}}
+                                            </a>
+                                        {{/unless}}
+                                    {{else}}
+                                        {{#unless @member}}
+                                            <a class="gh-main-button gh-subscribe-button" href="{{@site.url}}/subscribe" aria-label="{{t "Subscribe button"}}">
+                                                {{t "Subscribe"}}
+                                            </a>
+                                        {{/unless}}
+                                    {{/if}}
+                                {{/get}}
+                            {{/if}}
+                        </div>
+                        {{#match pagination.total ">=" "20" }}
+                            <div class="gh-foot-subscribtion-sliders-wrapper">
+                                <div class="gh-foot-slider-wrapper">
+                                    <div class="gh-foot-slider gh-foot-slider--forward">
+                                        <div class="swiper-wrapper">
+                                            {{#get "posts" limit="10" page="2" order="published_at desc" filter="feature_image:-null"}}
+                                                {{#foreach posts}}
+                                                    <div class="swiper-slide gh-foot-slider-slide">
+                                                        <picture>
+                                                            <source srcset="{{img_url feature_image size="600" format="webp"}} 600w, {{img_url feature_image size="300" format="webp"}} 300w" sizes="224px" type="image/webp">
+                                                            <img srcset="{{img_url feature_image size="600"}} 600w, {{img_url feature_image size="300"}} 300w" sizes="224px" src="{{img_url feature_image size="300"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}} {{t "post feature image"}}{{/if}}" loading="lazy">
+                                                        </picture>
+                                                    </div>
+                                                {{/foreach}}
+                                            {{/get}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gh-foot-slider-wrapper">
+                                    <div class="gh-foot-slider gh-foot-slider--reverse">
+                                        <div class="swiper-wrapper">
+                                            {{#get "posts" limit="10" page="1" order="published_at desc" filter="feature_image:-null"}}
+                                                {{#foreach posts}}
+                                                    <div class="swiper-slide gh-foot-slider-slide">
+                                                        <picture>
+                                                            <source srcset="{{img_url feature_image size="600" format="webp"}} 600w, {{img_url feature_image size="300" format="webp"}} 300w" sizes="224px" type="image/webp">
+                                                            <img srcset="{{img_url feature_image size="600"}} 600w, {{img_url feature_image size="300"}} 300w" sizes="224px" src="{{img_url feature_image size="300"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}} {{t "post feature image"}}{{/if}}" loading="lazy">
+                                                        </picture>
+                                                    </div>
+                                                {{/foreach}}
+                                            {{/get}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="gh-footer-cover-image-wrapper">
+                                <picture>
+                                    <source srcset="{{img_url @site.cover_image size="1200" format="webp"}} 1200w, {{img_url @site.cover_image size="800" format="webp"}} 800w, {{img_url @site.cover_image size="500" format="webp"}} 500w" sizes="40vw" type="image/webp">
+                                    <img class="gh-footer-cover-image" srcset="{{img_url @site.cover_image size="1200"}} 1200w, {{img_url @site.cover_image size="800"}} 800w, {{img_url @site.cover_image size="500"}} 500w" sizes="40vw" src="{{img_url @site.cover_image size="1200"}}" alt="{{@site.title}} {{t "cover image"}}" loading="lazy">
+                                </picture>
+                            </div>
+                        {{/match}}
+                    </div>
+                </div>
+            </div>
+            <div class="gh-foot-main-wrapper">
+                <div class="gh-container">
+                    <div class="gh-foot-main-container">
+                        <div class="gh-foot-main">
+                            <div class="gh-foot-main-content">
+                                <a class="gh-site-logo {{#if @custom.dark_mode_logo}}gh-site-logo-has-DM-logo{{/if}}" href="{{@site.url}}" aria-label="{{@site.title}} {{t "logo and home page link"}}">
+                                    {{#if @site.logo}}
+                                        {{#if @custom.dark_mode_logo}}
+                                            <img src="{{img_url @custom.dark_mode_logo}}"
+                                                alt="{{@site.title}} {{t "icon"}}" class="gh-site-logo-img-dark-mode">
+                                        {{/if}}
+                                            <img src="{{img_url @site.logo}}"
+                                                alt="{{@site.title}} {{t "icon"}}" class="gh-site-logo-img">
+                                    {{else}}
+                                        <h1 class="gh-site-title">{{@site.title}}</h1>
+                                    {{/if}}
+                                </a>
+                                <p class="gh-foot-main-text">
+                                    {{@site.description}}
+                                </p>
+                                {{> "socials"}}
+                            </div>
+                            <div class="gh-foot-navigation">
+                                {{navigation type="secondary"}}
+                            </div>
+                        </div>
+                        <div class="gh-foot-legal">
+                            <div class="gh-foot-legal-meta">
+                                {{t "Copyright"}} © 2023 {{@site.title}}. {{t "Published with"}} <a href="https://ghost.org" target="_blank"
+                                    rel="noopener" aria-label="{{t "Ghost CMS official website link"}}">Ghost</a> {{t "and"}} <a href="{{@site.url}}" aria-label="{{@site.title}} {{t "website link"}}">{{@site.title}}</a>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    {{! Scroll to top btn }}
+    <button class="gh-scroll-top-btn" type="button" title="{{t "Scroll to top button"}}" aria-label="{{t "Scroll to top button"}}">
+        <svg class="gh-scroll-top-arrow" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 10.8333L12 5M12 5L18 10.8333M12 5L12 19" stroke="#1D1D1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="gh-scroll-top-progress" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+        </svg>
+    </button>
+
+    {{! Main script and swiper.js script }}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js" ></script>
+    <script src="{{asset 'built/index.js'}}" ></script>
+
+
+    {{! <foot> }}
+    {{ghost_foot}}
+    {{! Outputs important scripts - should always be included before closing body tag }}
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<div class="gh-mobile-menu">
+    <div class="gh-mobile-menu__header">
+        {{#match @custom.navigation_layout "Author on the left" }}
+            {{> "header-author"}}
+        {{else match @custom.navigation_layout "Author in the middle" }}
+            {{> "header-author"}}
+        {{else match @custom.navigation_layout "Author with social icons"}}
+            {{> "header-author"}}
+        {{else match @custom.navigation_layout "Mobile menu with author"}}
+            {{> "header-author"}}
+        {{else match @custom.navigation_layout "Mobile menu with author and icons"}}
+            {{> "header-author"}}
+        {{else}}
+            <a class="gh-site-logo {{#if @custom.dark_mode_logo}}gh-site-logo-has-DM-logo{{/if}}" href="{{@site.url}}" aria-label="{{@site.title}} {{t "logo and homepage link"}}">
+                {{#if @site.logo}}
+                    {{#if @custom.dark_mode_logo}}
+                    <img src="{{img_url @custom.dark_mode_logo}}" alt="{{@site.title}} {{t "icon"}}" class="gh-site-logo-img-dark-mode">
+                    {{/if}}
+                    <img src="{{img_url @site.logo}}" alt="{{@site.title}} {{t "icon"}}" class="gh-site-logo-img">
+                {{else}}
+                    <h1 class="gh-site-title">{{@site.title}}</h1>
+                {{/if}}
+            </a>
+        {{/match}}
+        <button class="gh-mobile-menu__close-btn" aria-label="{{t "Close mobile menu button"}}">
+            {{> "icons/close-icon"}}
+        </button>
+    </div>
+    <div class="gh-mobile-menu-main">
+        <nav class="gh-mobile-menu__nav">
+            <ul class="gh-mobile-menu__nav-list">
+                {{#foreach navigation}}
+                <li class="gh-mobile-menu__nav-item"><a href="{{url absolute=" true"}}"
+                        aria-label="{{label}} {{t "navigation link"}}">{{label}}</a></li>
+                {{/foreach}}
+            </ul>
+            {{#if @site.members_enabled}}
+                {{#if @member}}
+                <a class="gh-main-button gh-member-button" href="{{@site.url}}/account"
+                    aria-label="{{t "Account page link"}}">{{t "My Account"}}</a>
+                {{else}}
+                <a class="gh-main-button gh-member-button" href="{{@site.url}}/signup" aria-label="{{t "Sign up button"}}">{{t "Sign Up"}}</a>
+                {{/if}}
+            {{/if}}
+        </nav>
+        {{#if @site.members_enabled}}
+            {{#unless @member}}
+            <div class="gh-mobile-menu__subscription-wrapper">
+                <div class="gh-mobile-menu__subscription">
+                    <h3 class="gh-mobile-menu__subscription-cta-text">
+                        {{@custom.cta_text_for_subscription_section}}
+                    </h3>
+                    <p class="gh-mobile-menu__subscription-cta-subtext">
+                        {{@custom.cta_subtext_for_subscription_section}}
+                    </p>
+                    <button class="gh-secondary-button" href="{{@site.url}}/subscribe"
+                        aria-label="{{t "Subscribe button"}}">{{t "Subscribe"}}</button>
+                    <picture>
+                        <source srcset="{{img_url @site.cover_image size="500" format="webp"}} 500w, {{img_url @site.cover_image size="300" format="webp"}} 300w" sizes="(max-width: 500px) 90vw, 368px" type="image/webp">
+                        <img class="gh-mobile-menu__cover-img" srcset="{{img_url @site.cover_image size="500"}} 500w, {{img_url @site.cover_image size="300"}} 300w" sizes="(max-width: 500px) 90vw, 368px" src="{{img_url @site.cover_image size="500"}}" alt="{{@site.title}} {{t "cover image"}}">
+                    </picture>
+                    <img class="gh-mobile-menu__cover-img" src="{{@site.cover_image}}"  alt="{{@site.title}} {{t "cover image"}}">
+                </div>
+            </div>
+            {{/unless}}
+        {{/if}}
+    </div>
+    <div class="gh-mobile-menu__footer">
+        {{> "socials"}}
+        <button class="gh-dark-mode-toggle-btn" aria-label="{{t "Dark mode toggle button"}}">
+            {{>icons/sun}}
+            {{>icons/moon}}
+        </button>
+    </div>
+</div>

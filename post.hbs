@@ -1,0 +1,124 @@
+{{!< default}} 
+{{#post}} 
+
+<main class="gh-container gh-article-page-wrapper gh-article-page-base-wrapper">
+
+    {{> "breadcrumbs"}}
+
+    <article class="gh-article-page {{post_class}}">
+
+        <div class="gh-article-page-header {{^if feature_image}}gh-article-page-header--no-image{{/if}}">
+            <div class="gh-article-page-header__info">
+                <a href="{{primary_author.url}}" class="gh-article-page-header__author" aria-label="{{primary_author.name}} {{t "page link"}}">
+                    {{#if primary_author.profile_image}}
+                    <picture>
+                        <source srcset="{{img_url primary_author.profile_image size="200" format="webp"}} 200w, {{img_url primary_author.profile_image size="112" format="webp"}} 112w" sizes="40px"  type="image/webp">
+                        <img class="gh-article-page-header__author-image" srcset="{{img_url primary_author.profile_image size="200"}} 200w, {{img_url primary_author.profile_image size="112"}} 112w" sizes="40px" src="{{img_url primary_author.profile_image size="200"}}"
+                        alt="{{primary_author.name}} {{t "profile image"}}">
+                    </picture>
+                    {{else}}
+                    <img class="gh-article-page-header__author-image" src="{{asset "imagesAndIcons/AuthorAvatarDefault.jpg"}}"
+                        alt="{{primary_author.name}} {{t "profile image"}}">
+                    {{/if}}
+                    <span class="gh-article-page-header__author-name">{{primary_author.name}}</span>
+                </a>
+                <span class="gh-post-meta gh-post-meta--article-header{{#match @custom.background_color "#ffffff"}} gh-post-meta--white-bg{{/match}}">{{t "Updated on"}} <time datetime="{{date format="
+                        YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time> </span>
+                {{#if reading_time}}
+                <span class="gh-post-meta gh-article-page__reading-time{{#match @custom.background_color "#ffffff"}} gh-post-meta--white-bg{{/match}}">{{reading_time}}</span>
+                {{/if}}
+            </div>
+            <h1 class="gh-article-page-heading">{{title}}</h1>
+            {{#if excerpt}}
+            <p class="gh-article-page-excerpt">{{excerpt}}</p>
+            {{/if}}
+            <div class="gh-article-page-share-block">
+                <a class="gh-article-share-btn gh-article-share-btn--facebook" href="https://www.facebook.com/sharer.php?u={{url absolute='true'}}" target="_blank" rel="noopener" aria-label="{{t "Share on Facebook"}}">
+                    {{> "icons/facebook"}}
+                </a>
+                <a class="gh-article-share-btn" href="https://twitter.com/intent/tweet?url={{url absolute='true'}}&amp;text={{encode title}}" target="_blank" rel="noopener" aria-label="{{t "Share on Twitter"}}">
+                    {{> "icons/twitter"}}
+                </a>
+                <a class="gh-article-share-btn" href="https://reddit.com/submit?url={{url absolute='true'}}&amp;media=&amp;description={{encode title}}" target="_blank" rel="noopener" data-pin-do="none" aria-label="{{t "Share on Reddit"}}">
+                    {{> "icons/reddit"}}
+                </a>
+                <button class="gh-article-share-btn copyToClipboardBtn" aria-label="{{t "Copy to clipboard button"}}">
+                    {{> "icons/link-angled"}}
+                    <span class="copyToClipboardBtn__success">{{t "Link copied!"}}</span>
+                    <span class="copyToClipboardBtn__fail">{{t "Copy failed!"}}</span>
+                </button>
+            </div>
+            {{#if feature_image}}
+            <figure class="gh-article-page-feature-image">
+                <picture>
+                    <source srcset="{{img_url feature_image size="1600" format="webp"}} 1600w, {{img_url feature_image size="1200" format="webp"}} 1200w, {{img_url feature_image size="1000" format="webp"}} 1000w, {{img_url feature_image size="800" format="webp"}} 800w, {{img_url feature_image size="500" format="webp"}} 500w" sizes="(min-width: 816px) 736px, 90vw" type="image/webp">
+                    <img srcset="{{img_url feature_image size="1600"}} 1600w, {{img_url feature_image size="1200"}} 1200w, {{img_url feature_image size="1000"}} 1000w, {{img_url feature_image size="800"}} 800w, {{img_url feature_image size="500"}} 500w" sizes="(min-width: 816px) 736px, 90vw" src="{{img_url feature_image size="1600"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
+                </picture>
+                {{#if feature_image_caption}}
+                <figcaption>{{feature_image_caption}}</figcaption>
+                {{/if}}
+            </figure>
+            {{/if}}
+        </div>
+        <div class="gh-article-page-content">
+            {{content}}
+        </div>
+        {{#if comments}}
+            {{comments title="Comments" count="true" mode="auto" saturation="80"}}
+        {{/if}}
+        <div class="gh-article-page-footer">
+            <div class="gh-article-page-footer__meta">
+                <span class="gh-post-meta gh-post-meta--article-header">{{t "Updated on"}} <time datetime="{{date format="
+                        YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time> </span>
+                <div class="gh-article-page-share-block">
+                    <a class="gh-article-share-btn gh-article-share-btn--facebook" href="https://www.facebook.com/sharer.php?u={{url absolute='true'}}" target="_blank" rel="noopener" aria-label="{{t "Share on Facebook"}}">
+                        {{> "icons/facebook"}}
+                    </a>
+                    <a class="gh-article-share-btn" href="https://twitter.com/intent/tweet?url={{url absolute='true'}}&amp;text={{encode title}}" target="_blank" rel="noopener" aria-label="{{t "Share on Twitter"}}">
+                        {{> "icons/twitter"}}
+                    </a>
+                    <a class="gh-article-share-btn" href="https://reddit.com/submit?url={{url absolute='true'}}&amp;media=&amp;description={{encode title}}" target="_blank" rel="noopener" data-pin-do="none" aria-label="{{t "Share on Reddit"}}">
+                        {{> "icons/reddit"}}
+                    </a>
+                    <button class="gh-article-share-btn copyToClipboardBtn" aria-label="{{t "Copy to clipboard button"}}">
+                        {{> "icons/link-angled"}}
+                        <span class="copyToClipboardBtn__success">{{t "Link copied!"}}</span>
+                        <span class="copyToClipboardBtn__fail">{{t "Copy failed!"}}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="gh-article-page-footer__author">
+                <a href="{{primary_author.url}}" class="gh-article-page-header__author" aria-label="{{primary_author.name}} {{t "page link"}}">
+                    {{#if primary_author.profile_image}}
+                    <picture>
+                        <source srcset="{{img_url primary_author.profile_image size="200" format="webp"}} 200w, {{img_url primary_author.profile_image size="112" format="webp"}} 112w" sizes="40px"  type="image/webp">
+                        <img class="gh-article-page-header__author-image" srcset="{{img_url primary_author.profile_image size="200"}} 200w, {{img_url primary_author.profile_image size="112"}} 112w" sizes="40px" src="{{img_url primary_author.profile_image}}"
+                        alt="{{primary_author.name}} {{t "profile image"}}">
+                    </picture>
+                    {{else}}
+                    <img class="gh-article-page-header__author-image" src="{{asset "imagesAndIcons/AuthorAvatarDefault.jpg"}}"
+                        alt="{{primary_author.name}} {{t "profile image"}}">
+                    {{/if}}
+                    <span class="gh-article-page-footer__author-name">{{primary_author.name}}</span>
+                </a>
+                {{#if primary_author.bio}}
+                <div class="gh-article-page-footer__author-bio">
+                    {{primary_author.bio}}
+                </div>
+                {{/if}}
+            </div>
+            <hr>
+        </div>
+        <div class="gh-read-next">
+            <h3 class="gh-read-next__heading">{{t "Read Next"}}</h3>
+            <div class="gh-read-next__posts">
+                {{#get "posts" include="tags" limit="4" filter="id:-{{id}}"}}
+                    {{#foreach posts}}
+                        {{> 'post-card'}}
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </div>
+</main>
+
+{{/post}}

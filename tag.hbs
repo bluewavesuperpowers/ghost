@@ -1,0 +1,39 @@
+{{!< default}}
+
+<main class="gh-container gh-tag-page">
+    {{#tag}}
+    <div class="gh-tag-page__bread-header-wrapper{{#if feature_image}} gh-tag-page___bread-header-wrapper--with-image{{/if}}">
+        <div class="gh-tag-page__bread-header-background"></div>
+        {{> "breadcrumbs"}}
+        <div class="gh-tag-page__header{{#if feature_image}} gh-tag-page__header--with-image{{/if}}">
+            <div class="gh-tag-page__header-content">
+                <h1 class="gh-tag-page__heading">{{name}}</h1>
+                <p class="gh-tag-page__description">
+                {{#if description}}
+                    {{description}}
+                {{else}}
+                    {{t "A collection of"}} {{plural ../pagination.total empty=(t "No Posts") singular=(t "% Post") plural=(t "% Posts")}}
+                {{/if}}
+                </p>
+            </div>
+            {{#if feature_image}}
+            <div class="gh-tag-page__feature-image-wrapper">
+                <picture>
+                    <source srcset="{{img_url feature_image size="1600" format="webp"}} 1600w, {{img_url feature_image size="1200" format="webp"}} 1200w, {{img_url feature_image size="1000" format="webp"}} 1000w, {{img_url feature_image size="800" format="webp"}} 800w, {{img_url feature_image size="500" format="webp"}} 500w" sizes="(min-width: 1584px) 702px, 30vw, (max-width: 900px) 90vw" type="image/webp">
+                    <img class="gh-tag-page__feature-image" srcset="{{img_url feature_image size="1600"}} 1600w, {{img_url feature_image size="1200"}} 1200w, {{img_url feature_image size="1000"}} 1000w, {{img_url feature_image size="800"}} 800w, {{img_url feature_image size="500"}} 500w" sizes="(min-width: 1584px) 702px, 30vw, (max-width: 900px) 90vw" src="{{img_url feature_image size="1600"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{name}} {{t "page feature image"}}{{/if}}"/>
+                </picture>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    {{/tag}}
+    <div class="gh-tag-page__post-feed-wrapper gh-grid-section">
+        <div class="gh-posts-feed">
+            {{#foreach posts}}
+                {{> "post-card"}} 
+            {{/foreach}}
+        </div>
+        <a rel="next" class="gh-secondary-button gh-load-more-button" aria-label="{{t "Load more posts button"}}">{{t "Load More"}}</a>
+    </div>
+</main>
+

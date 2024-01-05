@@ -1,0 +1,34 @@
+.gh-main-button {
+    color: var(--color-buttons-main-text);
+    background-color: var(--background-color-button);
+    font-size: var(--font-size-main-buttons);
+    font-weight: 700;
+    line-height: 120%;
+    border-radius: var(--border-radius-buttons);
+    transition: opacity 0.25s ease;
+    padding: var(--padding-buttons);
+    letter-spacing: var(--letter-spacing-buttons);
+    text-transform: var(--text-transform-buttons);
+    width: max-content;
+}
+
+.gh-main-button:hover {
+    opacity: 0.85;
+}
+
+.gh-secondary-button {
+    color: var(--color-buttons-secondary-text);
+    background-color: var(--color-buttons-secondary);
+    font-size: var(--font-size-main-buttons);
+    font-weight: 700;
+    line-height: 120%;
+    transition: background-color 0.25s ease;
+    border-radius: var(--border-radius-buttons);
+    padding: var(--padding-buttons);
+    letter-spacing: var(--letter-spacing-buttons);
+    text-transform: var(--text-transform-buttons);
+}
+
+.gh-secondary-button:hover {
+    background-color: var(--color-buttons-secondary-hover);
+}

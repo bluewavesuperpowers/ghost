@@ -1,0 +1,288 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{{#match @custom.typography "Sans-serif" }}
+<style>
+    :root {
+        --font-family-headings: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+        --font-family-body: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+        --font-family-buttons: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+        --font-family-navigation: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+        --font-family-card-headings: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+
+        --font-weight-headings: 700;
+        --font-weight-navigation: 500;
+        --font-weight-card-heading: 600;
+        --font-weight-tags: 500;
+        --font-weight-footer-subtext: 500;
+        --font-weight-toggle-heading: 600;
+
+        --font-about-primary-line-height: 112%;
+        --font-about-secondary-line-height: 120%;
+        --font-latest-line-height: 116%;
+        --font-subscribe-cta-line-height: 116%;
+        --font-subscribe-sub-cta-line-height: 125%;
+        --font-card-heading-line-height: 116%;
+        --font-latest-card-heading-line-height: 120%;
+        --font-post-text-line-height: 145%;
+
+        --font-size-site-title: 24px;
+        --font-size-about-primary: 64px;
+        --font-size-about-secondary: 24px;
+        --font-size-navigation: 16px;
+        --font-size-main-buttons: 15px;
+        --font-size-subscribe-button: 16px;
+        --font-size-topic-grid-name: 32px;
+        --font-size-topic-grid-link: 15px;
+        --font-size-card-heading: 24px;
+        --font-size-card-heading-large: 28px;
+        --font-size-tags: 16px;
+        --font-size-tags--small: 15px;
+        --font-size-latest-heading: 56px;
+        --font-size-smallgrid-card-heading: 22px;
+        --font-size-subscribe-cta: 40px;
+        --font-size-article-headings: 56px;
+        --font-size-article-headings-wide: 64px;
+        --font-size-post-text: 20px;
+
+        --font-size-tags--laptop: 14px;
+        --font-size-tags--small--laptop: 14px;
+
+        --font-size-subscribe-button--laptop: 15px;
+
+        --letter-spacing-main: normal;
+        --letter-spacing-site-title: normal;
+        --letter-spacing-navigation: normal;
+        --letter-spacing-headings: normal;
+        --letter-spacing-about-secondary: normal;
+        --letter-spacing-card-titles: normal;
+        --letter-spacing-buttons: normal;
+        --letter-spacing-tags: normal;
+
+        --text-transfrom-navigation: normal;
+        --text-transform-tags: normal;
+        --text-transform-buttons: none;
+    }
+</style>
+{{/match}}
+
+{{#match @custom.typography "Serif" }}
+{{!-- Gloock --}}
+<link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+
+{{!-- Instrument Sans --}}
+<link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+
+{{!-- DM sans --}}
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+
+<style>
+    :root {
+        --font-family-headings: 'Gloock', serif;
+        --font-family-body: 'Instrument Sans', sans-serif;
+        --font-family-buttons: 'Instrument Sans', sans-serif;
+        --font-family-navigation: 'DM Sans', sans-serif;
+        --font-family-card-headings: 'Gloock', serif;
+
+        --font-weight-headings: 400;
+        --font-weight-navigation: 600;
+        --font-weight-card-heading: 400;
+        --font-weight-tags: 700;
+        --font-weight-footer-subtext: 500;
+        --font-weight-toggle-heading: 400;
+
+        --font-about-primary-line-height: 116%;
+        --font-about-secondary-line-height: 130%;
+        --font-latest-line-height: 120%;
+        --font-subscribe-cta-line-height: 120%;
+        --font-subscribe-sub-cta-line-height: 130%;
+        --font-card-heading-line-height: 120%;
+        --font-latest-card-heading-line-height: 120%;
+        --font-post-text-line-height: 145%;
+
+        --font-size-site-title: 25px;
+        --font-size-about-primary: 64px;
+        --font-size-about-secondary: 24px;
+        --font-size-navigation: 13px;
+        --font-size-main-buttons: 15px;
+        --font-size-subscribe-button: 16px;
+        --font-size-topic-grid-name: 35px;
+        --font-size-topic-grid-link: 13px;
+        --font-size-card-heading: 25px;
+        --font-size-card-heading-large: 28px;
+        --font-size-tags: 12px;
+        --font-size-tags--small: 12px;
+        --font-size-latest-heading: 56px;
+        --font-size-smallgrid-card-heading: 23px;
+        --font-size-subscribe-cta: 40px;
+        --font-size-article-headings: 56px;
+        --font-size-article-headings-wide: 64px;
+        --font-size-post-text: 20px;
+
+        --font-size-tags--laptop: 12px;
+        --font-size-tags--small--laptop: 12px;
+
+        --font-size-subscribe-button--laptop: 15px;
+
+        --letter-spacing-main: normal;
+        --letter-spacing-site-title: -0.02em;
+        --letter-spacing-navigation: 0.08em;
+        --letter-spacing-headings: normal;
+        --letter-spacing-about-secondary: normal;
+        --letter-spacing-card-titles: normal;
+        --letter-spacing-buttons: normal;
+        --letter-spacing-tags: 0.08em;
+
+        --text-transfrom-navigation: uppercase;
+        --text-transform-tags: uppercase;
+        --text-transform-buttons: none;
+    }
+</style>
+{{/match}}
+
+{{#match @custom.typography "Technology" }}
+
+{{!-- Plus Jakarta sans --}}
+<link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+
+{{!-- DM sans --}}
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+    
+<style>
+    :root {
+        --font-family-headings: 'Plus Jakarta Sans', sans-serif;
+        --font-family-body: 'Plus Jakarta Sans', sans-serif;
+        --font-family-buttons: 'Plus Jakarta Sans', sans-serif;
+        --font-family-navigation: 'DM Sans', sans-serif;
+        --font-family-card-headings: 'Plus Jakarta Sans', sans-serif;
+
+        --font-weight-headings: 700;
+        --font-weight-navigation: 700;
+        --font-weight-card-heading: 600;
+        --font-weight-tags: 700;
+        --font-weight-footer-subtext: 600;
+        --font-weight-toggle-heading: 600;
+
+        --font-about-primary-line-height: 112%;
+        --font-about-secondary-line-height: 135%;
+        --font-latest-line-height: 116%;
+        --font-subscribe-cta-line-height: 120%;
+        --font-subscribe-sub-cta-line-height: 135%;
+        --font-card-heading-line-height: 135%;
+        --font-latest-card-heading-line-height: 135%;
+        --font-post-text-line-height: 150%;
+
+        --font-size-site-title: 24px;
+        --font-size-about-primary: 64px;
+        --font-size-about-secondary: 22px;
+        --font-size-navigation: 13px;
+        --font-size-main-buttons: 14px;
+        --font-size-subscribe-button: 16px;
+        --font-size-topic-grid-name: 35px;
+        --font-size-topic-grid-link: 14px;
+        --font-size-card-heading: 24px;
+        --font-size-card-heading-large: 28px;
+        --font-size-tags: 12px;
+        --font-size-tags--small: 12px;
+        --font-size-latest-heading: 54px;
+        --font-size-smallgrid-card-heading: 22px;
+        --font-size-subscribe-cta: 40px;
+        --font-size-article-headings: 54px;
+        --font-size-article-headings-wide: 64px;
+        --font-size-post-text: 18px;
+
+        --font-size-tags--laptop: 11px;
+        --font-size-tags--small--laptop: 11px;
+
+        --font-size-subscribe-button--laptop: 15px;
+
+        --letter-spacing-main: -0.005em;
+        --letter-spacing-site-title: -0.04em;
+        --letter-spacing-navigation: 0.08em;
+        --letter-spacing-headings: -0.03em;
+        --letter-spacing-about-secondary: -0.01em;
+        --letter-spacing-card-titles: -0.02em;
+        --letter-spacing-buttons: -0.005em;
+        --letter-spacing-tags: 0.08em;
+
+        --text-transfrom-navigation: uppercase;
+        --text-transform-tags: uppercase;
+        --text-transform-buttons: none;
+    }
+</style>
+{{/match}}
+
+{{#match @custom.typography "Minimalism" }}
+
+{{!-- DM Sans --}}
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+    
+<style>
+    :root {
+        --font-family-headings: 'DM Sans', sans-serif;
+        --font-family-body: 'DM Sans', sans-serif;
+        --font-family-buttons: 'DM Sans', sans-serif;
+        --font-family-navigation: 'DM Sans', sans-serif;
+        --font-family-card-headings: 'DM Sans', sans-serif;
+
+        --font-weight-headings: 700;
+        --font-weight-navigation: 500;
+        --font-weight-card-heading: 700;
+        --font-weight-tags: 500;
+        --font-weight-footer-subtext: 500;
+        --font-weight-toggle-heading: 700;
+
+        --font-about-primary-line-height: 116%;
+        --font-about-secondary-line-height: 122%;
+        --font-latest-line-height: 116%;
+        --font-subscribe-cta-line-height: 120%;
+        --font-subscribe-sub-cta-line-height: 125%;
+        --font-card-heading-line-height: 122%;
+        --font-latest-card-heading-line-height: 122%;
+        --font-post-text-line-height: 145%;
+
+        --font-size-site-title: 28px;
+        --font-size-about-primary: 64px;
+        --font-size-about-secondary: 24px;
+        --font-size-navigation: 15px;
+        --font-size-main-buttons: 13px;
+        --font-size-subscribe-button: 14px;
+        --font-size-topic-grid-name: 32px;
+        --font-size-topic-grid-link: 13px;
+        --font-size-card-heading: 24px;
+        --font-size-card-heading-large: 26px;
+        --font-size-tags: 15px;
+        --font-size-tags--small: 14px;
+        --font-size-latest-heading: 56px;
+        --font-size-smallgrid-card-heading: 24px;
+        --font-size-subscribe-cta: 40px;
+        --font-size-article-headings: 56px;
+        --font-size-article-headings-wide: 64px;
+        --font-size-post-text: 20px;
+
+        --font-size-tags--laptop: 14px;
+        --font-size-tags--small--laptop: 14px;
+
+        --font-size-subscribe-button--laptop: 13px;
+
+        --letter-spacing-main: -0.005em;
+        --letter-spacing-site-title: 0.1em;
+        --letter-spacing-navigation: -0.005em;
+        --letter-spacing-headings: -0.02em;
+        --letter-spacing-about-secondary: -0.005em;
+        --letter-spacing-card-titles: -0.02em;
+        --letter-spacing-buttons: 0.08em;
+        --letter-spacing-tags: -0.005em;
+
+        --text-transfrom-navigation: normal;
+        --text-transform-tags: normal;
+        --text-transform-buttons: uppercase;
+    }
+</style>
+{{/match}}

@@ -1,0 +1,26 @@
+{{#if isSecondary}}
+    <ul class="nav">
+        {{#foreach navigation}}
+            <li class="nav-{{slug}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
+        {{/foreach}}
+    </ul>
+{{else}}
+    <ul class="nav">
+        {{#foreach navigation from="1" to="4"}}
+            <li class="nav-{{slug}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
+        {{/foreach}}
+        <li class="gh-subnav-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 5.375C10.8975 5.375 11.625 4.64746 11.625 3.75C11.625 2.85254 10.8975 2.125 10 2.125C9.10254 2.125 8.375 2.85254 8.375 3.75C8.375 4.64746 9.10254 5.375 10 5.375Z" fill="#1D1D1F"/>
+                <path d="M10 11.625C10.8975 11.625 11.625 10.8975 11.625 10C11.625 9.10254 10.8975 8.375 10 8.375C9.10254 8.375 8.375 9.10254 8.375 10C8.375 10.8975 9.10254 11.625 10 11.625Z" fill="#1D1D1F"/>
+                <path d="M10 17.875C10.8975 17.875 11.625 17.1475 11.625 16.25C11.625 15.3525 10.8975 14.625 10 14.625C9.10254 14.625 8.375 15.3525 8.375 16.25C8.375 17.1475 9.10254 17.875 10 17.875Z" fill="#1D1D1F"/>
+            </svg>
+             <ul class="gh-header-subnav">
+                {{#foreach navigation from="5"}}
+                    <li class="nav-{{slug}} gh-subnav-item"><a href="{{url absolute="true"}}">{{label}}</a></li>
+                {{/foreach}}
+            </ul>
+        </li>
+    </ul>
+{{/if}}
+

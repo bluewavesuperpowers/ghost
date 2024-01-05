@@ -1,0 +1,38 @@
+{{#match @custom.border_radius "Rounded"}}
+<style>
+    :root {
+        --border-radius-buttons: 100px;
+        --border-radius-containers: 8px;
+        --border-radius-tags: 4px;
+
+        --padding-buttons: 12px 22px;
+        --padding-subscribe-button: 20px 28px;
+    }
+</style>
+{{/match}}
+
+{{#match @custom.border_radius "Slightly rounded"}}
+<style>
+    :root {
+        --border-radius-buttons: 5px;
+        --border-radius-containers: 8px;
+        --border-radius-tags: 4px;
+
+        --padding-buttons: 12px 22px;
+        --padding-subscribe-button: 20px 28px;
+    }
+</style>
+{{/match}}
+
+{{#match @custom.border_radius "Squared"}}
+<style>
+    :root {
+        --border-radius-buttons: 0;
+        --border-radius-containers: 0;
+        --border-radius-tags: 0;
+
+        --padding-buttons: 14px 24px;
+        --padding-subscribe-button: 20px 30px;
+    }
+</style>
+{{/match}}

@@ -1,0 +1,135 @@
+/* Variables
+/* ---------------------------------------------------------- */
+
+:root {
+    --color-background-main: #ffffff;
+    --color-text-main: #1D1D1F;
+
+    --color-buttons-main-text: #FDFDFD;
+
+    --color-buttons-secondary: #EDEDED;
+    --color-buttons-secondary-text: #1D1D1F;
+    --color-buttons-secondary-hover: #DDDDDD;
+
+    --color-background-elements-main: #F1F1F2;
+    --color-background-elements-main-hover: #EDEDED;
+
+    --color-borders: #DDDDDD;
+
+    --color-nav-link-hover: #8E8E8F;
+
+    --color-dark-mode-slider: #FDFDFD;
+
+    --color-text-light: #ffffff;
+    --color-text-lighter: #777779;
+    --color-text-tags: #616162;
+    --color-text-meta: #A5A5A5;
+    --color-text-post: #343435;
+    --color-text-input: #1D1D1F;
+    --color-text-tier-desc: #777779;
+
+    --color-card-title-hover: #616162;
+
+    --color-link: #8E8E8F;
+    --color-link-hover: #616162;
+
+    --color-background-text-blocks: #F6F6F6;
+   
+    --color-bookmark-border: #EDEDED;
+    --color-footer-meta-separator: #BBBBBC;
+
+    --color-audio-thumbnail-placeholder: #E4E4E4;
+
+    --color-background-block-hover: #F4F4F4;
+
+    --color-accent: var(--ghost-accent-color, #12c91e);
+}
+
+
+/* Hero-Section, Header-Sections and Footer variables for color changing based on background color */
+/* ---------------------------------------------------------- */
+
+:root[data-color-scheme='light'].gh-color-section-font-dark {
+    --font-color-hero: #1D1D1F;
+    --font-color-footer-main: #1D1D1F;
+    --font-color-footer-secondary: #5c5c5c;
+    --font-color-foot-meta: #5c5c5c;
+    --color-footer-border: #DADDE2;
+    --font-color-post-meta: #A5A5A5;
+}
+
+:root[data-color-scheme='light'].gh-color-section-font-light {
+    --font-color-hero: #EDEDED;
+    --font-color-footer-main: #EDEDED;
+    --font-color-footer-secondary: #ecebeb;
+    --font-color-foot-meta: #EDEDED;
+    --color-footer-border: #DADDE2;
+    --font-color-post-meta: #A5A5A5;
+}
+
+:root[data-color-scheme='light'].gh-color-section-font-light.gh-html-white-background,
+:root[data-color-scheme='light'].gh-color-section-font-dark.gh-html-white-background {
+    --font-color-hero: #1D1D1F;
+    --font-color-footer-main: #1D1D1F;
+    --font-color-footer-secondary: #5c5c5c;
+    --font-color-foot-meta: #8E8E8F;
+    --color-footer-border: #DDDDDD;
+    --font-color-post-meta: #A5A5A5;
+}
+
+:root[data-color-scheme="dark"].gh-color-section-font-light,
+:root[data-color-scheme="dark"].gh-color-section-font-dark {
+    --font-color-hero: #EDEDED;
+    --font-color-footer-main: #EDEDED;
+    --font-color-footer-secondary: #f1f0f0;
+    --font-color-foot-meta: #EDEDED;
+    --color-footer-border: #343435;
+    --font-color-post-meta: #A5A5A5;
+}
+
+/* Dark Theme Variables */
+/* ---------------------------------------------------------- */
+
+:root[data-color-scheme="dark"] {
+    --color-background-main: #1D1D1F;
+    --color-text-main: #EDEDED;
+
+    --color-buttons-main-text: #F6F6F6;
+
+    --color-buttons-secondary: #343435;
+    --color-buttons-secondary-text: #F6F6F6;
+    --color-buttons-secondary-hover: #29292A;
+
+    --color-background-elements-main: #29292A;
+    --color-background-elements-main-hover: #121214;
+
+    --color-borders: #343435;
+
+    --color-nav-link-hover: #777779;
+
+    --color-dark-mode-slider: #4A4A4C; 
+
+    --color-text-light: #ffffff;
+    --color-text-lighter: #8E8E8F;
+    --color-text-tags: #BBBBBC;
+    --color-text-meta: #A5A5A5;
+    --color-text-post: #EDEDED;
+    --color-text-input: #EDEDED;
+    --color-text-tier-desc: #BBBBBC;
+
+    --color-link: #8E8E8F;
+    --color-link-hover: #616162;
+
+    --color-card-title-hover: #BBBBBC;
+
+    --color-background-text-blocks: #29292A;
+   
+    --color-bookmark-border: #343435;
+    --color-footer-meta-separator: #BBBBBC;
+
+    --color-audio-thumbnail-placeholder: #E4E4E4;
+
+    --color-background-block-hover: #121214;
+
+    --color-accent: var(--ghost-accent-color, #12c91e);
+}

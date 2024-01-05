@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" class="{{#match @custom.background_color "#ffffff"}}gh-html-white-background{{/match}}" data-color-scheme="light">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{meta_title}}</title>
+    <link rel="stylesheet" href="{{asset 'built/index.css'}}" />
+    {{> "font-pairings"}}
+    <script>
+        const rootElem = document.querySelector("html[data-color-scheme]");
+
+        const detectSystemTheme = () => {
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                rootElem.setAttribute("data-color-scheme", "dark");
+            } else {
+                rootElem.setAttribute("data-color-scheme", "light");
+            }
+        };
+
+        const initTheme = () => {
+            const localStoragePref = localStorage.getItem("color-scheme");
+
+            if (localStoragePref) {
+                rootElem.setAttribute("data-color-scheme", localStoragePref);
+            } else {
+                detectSystemTheme();
+            }
+        };
+
+        initTheme();
+
+        window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", () => {
+                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    rootElem.setAttribute("data-color-scheme", "dark");
+                } else {
+                    rootElem.setAttribute("data-color-scheme", "light");
+                }
+            });
+    </script>
+    {{> "border-radius"}}
+    <style>
+        :root {
+            --background-color-button: {{@custom.button_color}};
+        }
+
+        .gh-announcement-bar {
+            display: none !important;
+        }
+    </style>
+    {{#match @custom.button_color "#000000"}}
+        <style>
+            :root[data-color-scheme="dark"] {
+                --background-color-button: #343435;
+            }
+        </style>
+    {{/match}}
+    {{#if @member}}
+        <script>window.location = '{{@site.url}}/account/';</script>
+    {{/if}}
+
+    {{ghost_head}}
+    {{!-- Outputs important meta data and settings, should always be in <head> --}}
+
+</head>
+
+<body class="{{body_class}}">
+    <div class="gh-viewport">
+        <main class="gh-sign-up-page gh-form-page gh-container">
+           <a class="gh-site-logo gh-form-page__site-logo {{#if @custom.dark_mode_logo}}gh-site-logo-has-DM-logo{{/if}}" href="{{@site.url}}" aria-label="{{@site.title}} {{t "logo and home page link"}}">
+                {{#if @site.logo}}
+                    {{#if @custom.dark_mode_logo}}
+                    <img src="{{img_url @custom.dark_mode_logo}}" alt="{{@site.title}} {{t "icon"}}" class="gh-site-logo-img-dark-mode">
+                    {{/if}}
+                    <img src="{{img_url @site.logo}}" alt="{{@site.title}} {{t "icon"}}" class="gh-site-logo-img">
+                    {{else}}
+                    <h1 class="gh-site-title">{{@site.title}}</h1>
+                {{/if}}
+            </a>
+            <div class="gh-form-wrapper">
+                <form class="gh-form" data-members-form="signup" data-members-autoredirect="false" novalidate>
+                    <h2 class="gh-form__title">{{t "Create Account"}}</h2>
+                    <div class="gh-form__input-wrapper">
+                        <label class="gh-form__input-label" for="name-input">{{t "Your Name"}}</label>
+                        <input class="gh-form-input" data-members-name type="text" name="name-unput" id="name-input" placeholder="Charles Barrett" aria-label="{{t "Your Name"}}" autofocus required="true">
+                    </div>
+                    <div class="gh-form__input-wrapper">
+                        <label class="gh-form__input-label" for="email-input">{{t "Your Email Address"}}</label>
+                        <input class="gh-form-input" data-members-email type="email" name="email-unput" id="email-input" placeholder="charles@hello.com" aria-label="{{t "Your email address"}}" required="true">
+                    </div>
+                    <button aria-labelledby="Sign Up button" class="gh-main-button gh-form__submit-button" type="submit">
+                        <span>{{t "Sign Up"}}</span>
+                        {{> "icons/loader"}}
+                    </button>
+                    <p class="gh-form__error" data-members-error></p>
+                    <p class="gh-form-question">{{t "Already have an account?"}} <a class="gh-form-question__link" href="{{@site.url}}/signin" aria-label="Sign in">{{t "Sign In"}}</a></p>
+                    <div class="gh-form__success">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M43.2008 24C43.2008 34.6039 34.6046 43.2 24.0008 43.2C13.3969 43.2 4.80078 34.6039 4.80078 24C4.80078 13.3962 13.3969 4.80005 24.0008 4.80005C27.0132 4.80005 29.8635 5.49378 32.4008 6.73021M39.6008 12L22.8008 28.8L18.0008 24"
+                                stroke="#17996A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p class="gh-form__success-title">{{t "Success! Now Check Your Email"}}</p>
+                        <p class="gh-form__success-text">{{t "To complete Sign Up, click the confirmation link in your inbox. If it doesn’t
+                            arrive within 3 minutes, check your spam folder."}}</p>
+                        <a href="{{@site.url}}" class="gh-secondary-button">{{t "Ok, Thanks"}}</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    {{! <foot> }}
+    {{ghost_foot}}
+    {{! Outputs important scripts - should always be included before closing body tag }}
+</body>
+
+</html>

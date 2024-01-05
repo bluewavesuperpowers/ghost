@@ -1,0 +1,133 @@
+{{!< default}}
+
+<main class="gh-main{{#match @custom.hero_section_layout "Without hero section"}} gh-main--without-hero{{/match}}">
+    {{^match @custom.hero_section_layout "Without hero section"}}
+        {{> "hero-section"}}
+    {{/match}}
+    <div class="gh-container">
+        <div class="gh-postfeed">
+        {{#if @custom.enter_tag_slugs_for_big_carousel}}
+            {{#get "tags" filter="slug:[{{@custom.enter_tag_slugs_for_big_carousel}}]"}}
+                {{#foreach tags}}
+                   <section class="gh-topic-grid">
+                        <div class="gh-topic-grid-head">
+                            <a href="{{url}}" aria-label="{{name}} {{t "category link"}}">
+                                <h2 class="gh-topic-grid-name">{{name}}</h2>
+                            </a>
+                            <a class="gh-topic-grid-link" href="{{url}}" aria-label="{{t "View"}} {{name}} {{t "category link"}}">{{t "View"}} {{name}} {{> "icons/link-arrow"}}</a>
+                        </div>
+                        <div class="gh-topic-slider-wrapper">
+                            <div class="gh-topic-slider gh-topic-slider--large">
+                                <div class="swiper-wrapper gh-topic-swiper-wrapper">
+                                    {{#get "posts" include="tags" limit="7" order="published_at desc" filter="tag:{{slug}}"}}
+                                        {{#foreach posts}}
+                                        <div class="swiper-slide">
+                                            {{> 'post-card'}}
+                                        </div>
+                                        {{/foreach}}
+                                    {{/get}}
+                                </div>
+                                <button class="gh-prev-slide-btn" aria-label="{{t "Previous slide"}}">{{> "icons/left-arrow"}}</button>
+                                <button class="gh-next-slide-btn" aria-label="{{t "Next slide"}}">{{> "icons/right-arrow"}}</button>
+                            </div>
+                        </div>
+                   </section>
+                {{/foreach}}
+            {{/get}}
+        {{/if}}
+        {{#if @custom.enter_tag_slugs_for_small_carousel}}
+            {{#get "tags" filter="slug:[{{@custom.enter_tag_slugs_for_small_carousel}}]"}}
+                {{#foreach tags}}
+                    <section class="gh-topic-grid">
+                        <div class="gh-topic-grid-head">
+                            <a href="{{url}}" aria-label="{{name}} {{t "category link"}}">
+                                <h2 class="gh-topic-grid-name">{{name}}</h2>
+                            </a>
+                            <a class="gh-topic-grid-link" href="{{url}}" aria-label="View {{name}} {{t "category link"}}">{{t "View"}} {{name}} {{> "icons/link-arrow"}}</a>
+                        </div>
+                        <div class="gh-topic-slider-wrapper">
+                            <div class="gh-topic-slider gh-topic-slider--small">
+                                <div class="swiper-wrapper gh-topic-swiper-wrapper">
+                                    {{#get "posts" include="tags" limit="7" order="published_at desc" filter="tag:{{slug}}"}}
+                                        {{#foreach posts}}
+                                        <div class="swiper-slide gh-topic-slide">
+                                            {{> 'post-card'}}
+                                        </div>
+                                        {{/foreach}}
+                                    {{/get}}
+                                </div>
+                                <button class="gh-prev-slide-btn" aria-label="{{t "Previous slide"}}">{{> "icons/left-arrow"}}</button>
+                                <button class="gh-next-slide-btn" aria-label="{{t "Next slide"}}">{{> "icons/right-arrow"}}</button>
+                            </div>
+                        </div>
+                   </section>
+                {{/foreach}}
+            {{/get}}
+        {{/if}}
+        {{#if @custom.enter_tag_slugs_for_big_grid}}
+            {{#get "tags" filter="slug:[{{@custom.enter_tag_slugs_for_big_grid}}]"}}
+                {{#foreach tags}}
+                    <section class="gh-big-grid-section gh-grid-section">
+                    <a href="{{url}}" aria-label="{{name}} {{t "category link"}}">
+                        <h2 class="gh-topic-grid-name">{{name}}</h2>
+                    </a>
+                    <div class="gh-posts-feed">
+                        {{#get "posts" limit="8" page='1' include="tags" order="published_at desc" filter="tag:{{slug}}"}}
+                            {{#foreach posts}}
+                                {{> "post-card"}}
+                            {{/foreach}}
+                        {{/get}}
+                    </div>
+                    <a rel="next" name="{{name}}" class="gh-secondary-button gh-load-more-button" aria-label="{{t "Load more posts button"}}">{{t "Load More"}}</a>
+                </section>
+                {{/foreach}}
+            {{/get}}
+        {{/if}}
+        {{#if @custom.enter_tag_slugs_for_small_grid}}
+            {{#get "tags" filter="slug:[{{@custom.enter_tag_slugs_for_small_grid}}]"}}
+                {{#foreach tags}}
+                    <section class="gh-small-grid-section gh-grid-section">
+                    <a href="{{url}}" aria-label="{{name}} {{t "category link"}}">
+                        <h2 class="gh-topic-grid-name">{{name}}</h2>
+                    </a>
+                    <div class="gh-posts-feed">
+                        {{#get "posts" limit="8" page="1" include="tags" order="published_at desc" filter="tag:{{slug}}"}}
+                            {{#foreach posts}}
+                                {{> "post-card"}}
+                            {{/foreach}}
+                        {{/get}}
+                    </div>
+                    <a rel="next" name="{{name}}" class="gh-secondary-button gh-load-more-button" aria-label="{{t "Load more posts button"}}">{{t "Load More"}}</a>
+                </section>
+                {{/foreach}}
+            {{/get}}
+        {{/if}}
+        {{#match @custom.enter_tag_slugs_for_big_grid "=" 'latest'}}
+            <section class="gh-big-grid-section gh-grid-section gh-grid-section-latest">
+                <h2 class="gh-topic-grid-name">{{t "Latest"}}</h2>
+                <div class="gh-posts-feed">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+                </div>
+                <a rel="next" name="latest" class="gh-secondary-button gh-load-more-button" aria-label="{{t "Load more posts button"}}">
+                    {{t "Load More"}}
+                </a>
+                </section>
+        {{/match}}
+        {{#match @custom.enter_tag_slugs_for_small_grid "=" 'latest'}}
+            <section class="gh-small-grid-section gh-grid-section gh-grid-section-latest">
+                <h2 class="gh-topic-grid-name">{{t "Latest"}}</h2>
+                <div class="gh-posts-feed">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+                </div>
+                <a rel="next" name="latest" class="gh-secondary-button gh-load-more-button" aria-label="{{t "Load more posts button"}}">
+                    {{t "Load More"}}
+                </a>
+                </section>
+        {{/match}}
+        </div>
+    </div>
+</main>

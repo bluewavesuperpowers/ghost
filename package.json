@@ -1,0 +1,186 @@
+{
+    "name": "spotlight",
+    "description": "Theme boasting stunning design and ultimate functionality for effortlessly elevating your website to new heights.",
+    "demo": "https://spotlight-primary.highfivethemes.com",
+    "version": "1.1.8",
+    "engines": {
+        "ghost": ">=5.0.0"
+    },
+    "license": "MIT",
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.jpg"
+    },
+    "scripts": {
+        "dev": "rollup -c --environment BUILD:development -w",
+        "build": "rollup -c --environment BUILD:production",
+        "zip": "npm run build && bestzip $npm_package_name.zip assets/* partials/* members/* *.hbs package.json rollup.config.js",
+        "test": "npx gscan .",
+        "pretest": "npm run build"
+    },
+    "author": {
+        "name": "HighFiveThemes",
+        "email": "hello@highfivethemes.com",
+        "url": "https://spotlight.highfivethemes.com"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Beautiful",
+            "Clean",
+            "Minimal",
+            "Blog"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme"
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.21.0",
+        "@babel/preset-env": "^7.20.2",
+        "@rollup/plugin-babel": "^6.0.3",
+        "@rollup/plugin-commonjs": "^24.0.1",
+        "@rollup/plugin-node-resolve": "^15.0.1",
+        "@rollup/plugin-terser": "^0.4.0",
+        "bestzip": "^2.2.1",
+        "postcss-import": "^15.1.0",
+        "postcss-preset-env": "^8.0.1",
+        "rollup": "^3.18.0",
+        "rollup-plugin-livereload": "^2.0.5",
+        "rollup-plugin-postcss": "^4.0.2"
+    },
+    "browserslist": [
+        "defaults"
+    ],
+    "config": {
+        "card_assets": true,
+        "posts_per_page": 8,
+        "image_sizes": {
+            "112": {
+                "width": 112
+            },
+            "200": {
+                "width": 200
+            },
+            "300": {
+                "width": 300
+            },
+            "500": {
+                "width": 500
+            },
+            "600": {
+                "width": 600
+            },
+            "800": {
+                "width": 800
+            },
+            "1000": {
+                "width": 1000
+            },
+            "1200": {
+                "width": 1200
+            },
+            "1600": {
+                "width": 1600
+            }
+        },
+        "custom": {
+            "navigation_layout": {
+                "type": "select",
+                "options": [
+                    "Logo on the left",
+                    "Author on the left",
+                    "Logo in the middle",
+                    "Author in the middle",
+                    "Logo with social icons",
+                    "Author with social icons",
+                    "Mobile menu with logo",
+                    "Mobile menu with author",
+                    "Mobile menu with logo and icons",
+                    "Mobile menu with author and icons"
+                ],
+                "default": "Logo on the left"
+            },
+            "dark_mode_logo": {
+                "type": "image"
+            },
+            "about_primary": {
+                "type": "text",
+                "default": "Unveiling the Secrets: Exploring the Wonders of the World",
+                "group": "homepage"
+            },
+            "about_secondary": {
+                "type": "text",
+                "default": "In this captivating blog, embark on a journey to unravel the mysteries and marvels that our world has to offer.",
+                "group": "homepage"
+            },
+            "hero_section_layout": {
+                "type": "select",
+                "options": [
+                    "Only text",
+                    "Image on the right",
+                    "Slider on the right",
+                    "Bottom slider",
+                    "Featured posts",
+                    "Without hero section"
+                ],
+                "default": "Image on the right",
+                "group": "homepage"
+            },
+            "enter_tag_slugs_for_big_carousel": {
+                "type": "text",
+                "group": "homepage"
+            },
+            "enter_tag_slugs_for_small_carousel": {
+                "type": "text",
+                "group": "homepage"
+            },
+            "enter_tag_slugs_for_big_grid": {
+                "type": "text",
+                "group": "homepage"
+            },
+            "enter_tag_slugs_for_small_grid": {
+                "type": "text",
+                "group": "homepage"
+            },
+            "cta_text_for_subscription_section": {
+                "type": "text",
+                "default": "Subscribe to New Posts"
+            },
+            "cta_subtext_for_subscription_section": {
+                "type": "text",
+                "default": "Lorem ultrices malesuada sapien amet pulvinar quis. Feugiat etiam ullamcorper pharetra vitae nibh enim vel."
+            },
+            "button_color": {
+                "type": "color",
+                "default": "#000000"
+            },
+            "background_color": {
+                "type": "color",
+                "default": "#ffffff"
+            },
+            "border_radius": {
+                "type": "select",
+                "options": [
+                    "Rounded",
+                    "Slightly rounded",
+                    "Squared"
+                ],
+                "default": "Rounded"
+            },
+            "typography": {
+                "type": "select",
+                "options": [
+                    "Sans-serif",
+                    "Serif",
+                    "Technology",
+                    "Minimalism"
+                ],
+                "default": "Sans-serif"
+            }
+        }
+    },
+    "type": "module"
+}
